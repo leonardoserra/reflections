@@ -7,16 +7,13 @@ Rails.application.routes.draw do
   resources :registrations, only: [ :new, :create ]
 
   # journals
-  get "/journals", to: "journals#index"
-  post "/journals", to: "journals#create"
+  resources :journals, only: [ :index, :show,:new, :create ]
 
   # books
-  get "/books", to: "books#index"
-  post "/books", to: "books#create"
+  resources :books, only: [ :index, :show,:new, :create ]
 
   # reflections
-  get "/reflection", to: "reflection#index"
-  post "/reflection", to: "reflection#create"
+  resources :reflections, only: [ :index, :show,:new, :create ]
 
   # healtcheck
   get "/up", to: "rails/health#show", as: :rails_health_check

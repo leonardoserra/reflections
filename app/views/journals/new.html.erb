@@ -1,0 +1,14 @@
+<h1>New journal</h1>
+
+<%= form_with model: @journal do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to "Cancel", journals_path %>

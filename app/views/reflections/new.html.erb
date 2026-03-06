@@ -1,0 +1,14 @@
+<h1>New reflection</h1>
+
+<%= form_with model: @reflection do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= link_to "Cancel", reflections_path %>

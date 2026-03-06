@@ -1,24 +1,35 @@
-<h2>Your Journals:</h2>
-<ul>
-  <% @journals.each do |j| %>
-  <li>
-    <%= j %>
-  </li>
-  <% end %>
-</ul>
-<h2>Your Books:</h2>
-<ul>
-  <% @books.each do |b| %>
-  <li>
-    <%= b %>
-  </li>
-  <% end %>
-</ul>
-<h2>Your Reflections:</h2>
-<ul>
-  <% @reflections.each do |r| %>
-  <li>
-    <%= r %>
-  </li>
-  <% end %>
-</ul>
+<div class="d-flex">
+  <div class="item-list">
+    <h2>Your Journals:</h2>
+    <%= link_to "New Journal", new_journal_path %>
+    <ul>
+      <% @journals.each do |j| %>
+      <li>
+        <%= link_to j.name, journal_path(j.id) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="item-list">
+    <h2>Your Books:</h2>
+    <%= link_to "New Book", new_book_path %>
+    <ul>
+      <% @books.each do |b| %>
+      <li>
+        <%= link_to b.name, book_path(b.id) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="item-list">
+    <h2>Your Reflections:</h2>
+    <%= link_to "New Reflection", new_reflection_path %>
+    <ul>
+      <% @reflections.each do |r| %>
+      <li>
+        <%= link_to r.name, reflection_path(r.id) %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
