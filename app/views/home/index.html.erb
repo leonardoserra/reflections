@@ -1,0 +1,24 @@
+<h2>Your Journals:</h2>
+<ul>
+  <% @journals.each do |j| %>
+  <li>
+    <%= j %>
+  </li>
+  <% end %>
+</ul>
+<h2>Your Books:</h2>
+<ul>
+  <% @books.each do |b| %>
+  <li>
+    <%= b %>
+  </li>
+  <% end %>
+</ul>
+<h2>Your Reflections:</h2>
+<ul>
+  <% @reflections.each do |r| %>
+  <li>
+    <%= r %>
+  </li>
+  <% end %>
+</ul>
