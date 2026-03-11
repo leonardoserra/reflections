@@ -1,9 +1,20 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
+book_page_one:
   number: 1
-  body: MyText
+  body: First page
+  pageable: book_one (Book)
 
-two:
+book_page_two:
+  number: 2
+  body: Second page
+  pageable: book_one (Book)
+
+journal_page_one:
   number: 1
-  body: MyText
+  body: Journal entry
+  pageable: journal_one (Journal)
+
+reflection_page:
+  number: 1
+  body: My reflection
+  pageable: reflection_one (Reflection)

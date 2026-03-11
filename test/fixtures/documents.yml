@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  type: 
-  name: MyString
+journal_one:
+  type: Journal
+  name: Pippo
   user: one
 
-two:
-  type: 
-  name: MyString
+book_one:
+  type: Book
+  name: Topolino
   user: two
+
+reflection_one:
+  type: Reflection
+  name: Thought
+  user: one

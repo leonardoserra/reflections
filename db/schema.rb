@@ -23,9 +23,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_233430) do
   create_table "pages", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
-    t.integer "number"
-    t.integer "pageable_id"
-    t.string "pageable_type"
+    t.integer "number", null: false
+    t.integer "pageable_id", null: false
+    t.string "pageable_type", null: false
     t.datetime "updated_at", null: false
     t.index ["pageable_type", "pageable_id"], name: "index_pages_on_pageable"
   end
