@@ -11,11 +11,11 @@ class BooksTest < ApplicationSystemTestCase
 
     click_on "New Book"
 
-    fill_in "Name", with: "Il linguaggio C"
+    fill_in "Name", with: "THE TEST BOOK"
 
     click_on "Create Book"
 
-    assert_text "Il linguaggio C"
+    assert_text "THE TEST BOOK"
   end
 
   private

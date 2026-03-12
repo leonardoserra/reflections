@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_book_path, alert: "Too many creations at once." }, unless: -> { Rails.env.test? }
   def index
     @books = Book.all
   end
