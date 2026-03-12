@@ -13,7 +13,7 @@ class BooksTest < ApplicationSystemTestCase
 
     fill_in "Name", with: "THE TEST BOOK"
 
-    click_on "Create Book"
+    send_keys(:enter)
 
     assert_text "THE TEST BOOK"
   end
