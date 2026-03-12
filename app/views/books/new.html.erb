@@ -3,7 +3,7 @@
 <%= form_with model: @book do |form| %>
   <div>
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, required: true, placeholder: "Name" %>
   </div>
 
   <div>
