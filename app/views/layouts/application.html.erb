@@ -12,7 +12,7 @@
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+    <%# = tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -24,13 +24,18 @@
   </head>
 
   <body>
-    <nav>
-      <%= link_to "Home", root_path %>
-      <%= link_to "Register", new_registration_path %>
-      <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-    </nav>
-    <main class="container mx-auto mt-28 px-5 flex">
+    <header>
+      <nav>
+        <%= link_to "Home", root_path %>
+        <%= link_to "Register", new_registration_path %>
+        <%= button_to "Log out", session_path, method: :delete if authenticated? %>
+      </nav>
+    </header>
+    <main>
       <%= yield %>
     </main>
+    <footer>
+      ciao
+    </footer>
   </body>
 </html>

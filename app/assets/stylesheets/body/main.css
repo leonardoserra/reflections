@@ -1,0 +1,12 @@
+main {
+  #index-container {
+    display: flex;
+    width: 100vw;
+    height: calc(100vh - 100px);
+    background-color: #ff02;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
