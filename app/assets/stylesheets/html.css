@@ -23,10 +23,11 @@ html {
 
     .flash {
       position: fixed;
-      top: 2rem;
+      top: 0.5rem;
       right: 2rem;
-      width: 5rem;
-      height: 2rem;
+      min-width: 12rem;
+      padding: 0.2rem 0.4rem;
+      min-height: 1rem;
       border: 1px solid var(--primary-color);
       background-color: var(--light-color);
 

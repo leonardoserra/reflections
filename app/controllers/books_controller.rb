@@ -21,18 +21,18 @@ class BooksController < ApplicationController
     @book.pages << @page
 
     if @book.save && @page.save
-      redirect_to @book
+      redirect_to @book, alert: success_create
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, alert: error_create
     end
   end
 
   def destroy
     @book = Book.find(destroy_params)
     if @book.destroy
-      redirect_to root_path, success: "#{@book.name} deleted succesfully!"
+      redirect_to root_path, alert: success_destroy
     else
-      redirect_to root_path, alert: "#{@book.name} not deleted for some error."
+      redirect_to root_path, alert: error_destroy
     end
   end
 
@@ -47,5 +47,21 @@ class BooksController < ApplicationController
 
     def page_number
       params[:page_number] || 1
+    end
+
+    def success_create
+       "Book \"#{@book.name}\" created succesfully!"
+    end
+
+    def error_create
+      "Book \"#{@book.name}\" not created for some error."
+    end
+
+    def success_destroy
+       "Book \"#{@book.name}\" deleted succesfully!"
+    end
+
+    def error_destroy
+      "Book \"#{@book.name}\" not deleted for some error."
     end
 end
