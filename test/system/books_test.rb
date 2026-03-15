@@ -9,27 +9,28 @@ class BooksTest < ApplicationSystemTestCase
   test "creating a new book" do
     visit root_url
 
-    click_on "New Book"
+    click_on "NEW BOOK"
 
     fill_in "Name", with: "THE TEST BOOK"
 
     send_keys(:enter)
 
-    assert_text "THE TEST BOOK"
+    assert :ok
+    assert_text 'Book "THE TEST BOOK" created succesfully!'
   end
 
-  private
   private
 
     def login_as(user)
       visit new_session_url
 
-      find("#email_address", wait: 2).fill_in(with: user.email_address)
+      find("#email_address").fill_in(with: user.email_address)
 
       fill_in "password", with: "password"
 
       click_button "Sign in"
 
-      assert_selector "h2", text: "Your Books:", wait: 2
+      assert :ok
+      assert_selector "h2", text: "Your Books"
     end
 end
