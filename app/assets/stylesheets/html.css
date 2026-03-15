@@ -1,0 +1,44 @@
+/* removing all default spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*setting default font size to use rem*/
+html {
+  body {
+    position: relative;
+    font-size: 16px;
+
+    color: var(--primary-color);
+
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      &:visited {
+        color: var(--primary-color);
+      }
+    }
+
+    .flash {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      width: 5rem;
+      height: 2rem;
+      border: 1px solid var(--primary-color);
+      background-color: var(--light-color);
+
+      &.success {
+        border-color: var(--success-color);
+        background-color: var(--soft-success-color);
+      }
+
+      &.alert {
+        border-color: var(--success-color);
+        background-color: var(--soft-success-color);
+      }
+    }
+  }
+}

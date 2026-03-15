@@ -1,3 +1,13 @@
 footer {
   height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .made_by {
+    transform: translateX(-50%);
+    .daruma_link {
+      text-decoration: underline;
+      color: var(--danger-color);
+    }
+  }
 }

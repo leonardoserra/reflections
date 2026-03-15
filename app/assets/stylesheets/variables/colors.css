@@ -1,0 +1,36 @@
+:root {
+  --primary-color: #221;
+  --soft-primary-color: #22221144;
+
+  --secondary-color: #3388ddaa;
+  --soft-secondary-color: #3388dd44;
+
+  --dark-grey: #332;
+  --soft-dark-grey: #33332244;
+
+  --light-color: #dfdfdf;
+
+  --success-color: #33ee22;
+  --soft-success-color: #33ee2244;
+
+  --warning-color: #eeee55;
+  --soft-warning-color: #eeee5544;
+
+  --danger-color: #ee3311;
+  --soft-danger-color: #ee331144;
+
+  --button-primary-color: var(--soft-primary-color);
+  --button-primary-border-color: var(--primary-color);
+
+  --button-secondary-color: var(--soft-secondary-color);
+  --button-secondary-border-color: var(--secondary-color);
+
+  --button-success-color: var(--soft-success-color);
+  --button-success-border-color: var(--success-color);
+
+  --button-warning-color: var(--soft-warning-color);
+  --button-warning-border-color: var(--warning-color);
+
+  --button-danger-color: var(--soft-danger-color);
+  --button-danger-border-color: var(--danger-color);
+}

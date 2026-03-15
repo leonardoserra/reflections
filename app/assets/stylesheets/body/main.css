@@ -1,12 +1,28 @@
-main {
-  #index-container {
-    display: flex;
-    width: 100vw;
-    height: calc(100vh - 100px);
-    background-color: #ff02;
-  }
+/*@import "../spacing/root.css";*/
 
-  a {
-    text-decoration: none;
+main {
+  width: 100vw;
+  height: calc(100vh - 7rem);
+
+  .index-container {
+    display: flex;
+    justify-content: space-around;
+    padding-top: var(--first-level-spacing);
+
+    ul {
+      list-style: none;
+      padding-left: 1rem;
+      li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-width: 4rem;
+        border-bottom: 1px solid var(--light-color);
+      }
+    }
+
+    .title {
+      color: var(--secondary-color);
+    }
   }
 }
