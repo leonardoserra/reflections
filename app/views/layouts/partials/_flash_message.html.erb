@@ -1,0 +1,5 @@
+<% if alert = flash[:alert] %>
+  <div class="flash alert"><%= alert %></div>
+<% elif success = flash[:success] %>
+  <div class="flash success"><%= success %></div>
+<% end %>

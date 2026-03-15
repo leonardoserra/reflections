@@ -1,0 +1,7 @@
+<header>
+  <nav>
+    <%= link_to "Home", root_path, class: "button primary sm" %>
+    <%= link_to "Register", new_registration_path, class: "button primary sm"  unless authenticated? %>
+    <%= button_to "Log out", session_path, method: :delete, class: "button secondary sm" if authenticated? %>
+  </nav>
+</header>
