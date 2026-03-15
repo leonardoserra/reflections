@@ -1,34 +1,37 @@
-<div id="index-container">
-  <div>
-    <h2>Your Journals</h2>
-    <%= link_to "New Journal", new_journal_path %>
+<div class="index-container">
+  <div class="document-list-card">
+    <h2 class="section-title pb-1" >Your Journals</h2>
+    <%= link_to "NEW JOURNAL", new_journal_path, class: "button success sm" %>
     <ul>
       <% @journals.each do |j| %>
-      <li>
-        <%= link_to j.name, journal_path(j.id) %>
+      <li class="pt-1">
+        <%= link_to j.name, journal_path(j.id), class: "pl-1" %>
+        <%= button_to "X", journal_path(j.id), method: :delete , class: "button xs danger" if authenticated? %>
       </li>
       <% end %>
     </ul>
   </div>
-  <div>
-    <h2>Your Books</h2>
-    <%= link_to "New Book", new_book_path %>
+  <div class="document-list-card">
+    <h2 class="section-title pb-1">Your Books</h2>
+    <%= link_to "NEW BOOK", new_book_path, class: "button success sm" %>
     <ul>
       <% @books.each do |b| %>
-      <li>
-        <%= link_to b.name, book_path(b.id) %>
+      <li class="pt-1">
+        <%= link_to b.name, book_path(b.id), class: "pl-1" %>
+        <%= button_to "X", book_path(b.id), method: :delete , class: "button xs danger" if authenticated? %>
       </li>
       <% end %>
     </ul>
   </div>
-  <div>
-    <h2>Your Reflections</h2>
-    <%= link_to "New Reflection", new_reflection_path %>
+  <div class="document-list-card">
+    <h2 class="section-title pb-1">Your Reflections</h2>
+    <%= link_to "NEW REFLECTION", new_reflection_path, class: "button success sm" %>
     <ul>
       <% @reflections.each do |r| %>
-      <li>
-        <%= link_to r.name, reflection_path(r.id) %>
-      </li>
+      <li class="pt-1">
+        <%= link_to r.name, r, class: "pl-1" %>
+        <%= button_to "X", r, method: :delete , class: "button xs danger" if authenticated? %>
+        </li>
       <% end %>
     </ul>
   </div>

@@ -12,17 +12,39 @@ class ReflectionsController < ApplicationController
   end
 
   def create
-    @reflection = Reflection.new(reflection_params)
+    @reflection = Reflection.new(create_params)
     @reflection.user = Current.user
-    if @reflection.save
+
+    @page = Page.new(number: 1, body: "", pageable_type: "Reflection",
+                     pageable_id: @reflection.id)
+    @reflection.page = @page
+
+    if @reflection.save && @page.save
       redirect_to @reflection
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @reflection = Reflection.find(destroy_params)
+    if @reflection.destroy
+      redirect_to root_path, success: "#{@reflection.name} deleted succesfully!"
+    else
+      redirect_to root_path, alert: "#{@reflection.name} not deleted for some error."
+    end
+  end
+
   private
-    def reflection_params
+    def create_params
       params.expect(reflection: [ :name ])
+    end
+
+    def destroy_params
+      params.expect(:id)
+    end
+
+    def page_number
+      params[:page_number] || 1
     end
 end

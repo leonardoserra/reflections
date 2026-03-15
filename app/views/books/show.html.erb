@@ -1,3 +1,9 @@
 <h1><%= @book.name %></h1>
 
+<div>
+  <% @book.pages.each do |page| %>
+    <p><%= page.body %></p>
+  <% end %>
+</div>
+
 <%= link_to "Back Home", "/" %>

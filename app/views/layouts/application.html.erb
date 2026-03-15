@@ -24,18 +24,11 @@
   </head>
 
   <body>
-    <header>
-      <nav>
-        <%= link_to "Home", root_path %>
-        <%= link_to "Register", new_registration_path %>
-        <%= button_to "Log out", session_path, method: :delete if authenticated? %>
-      </nav>
-    </header>
+    <%= render "layouts/partials/header" %>
     <main>
+      <%= render "layouts/partials/flash_message" %>
       <%= yield %>
     </main>
-    <footer>
-      ciao
-    </footer>
+    <%= render "layouts/partials/footer" %>
   </body>
 </html>
