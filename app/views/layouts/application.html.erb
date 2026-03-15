@@ -29,6 +29,6 @@
       <%= render "layouts/partials/flash_message" %>
       <%= yield %>
     </main>
-    <%= render "layouts/partials/footer" %>
+    <%= render "layouts/partials/footer", current_user: Current.user %>
   </body>
 </html>

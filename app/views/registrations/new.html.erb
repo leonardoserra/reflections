@@ -3,14 +3,9 @@
 <% end %>
 Sign up
 <%= form_with model: @user, url: registrations_url, class: "contents" do |form| %>
-  <%= form.email_field :email_address, required: true, placeholder: "example@domain.com", autofocus: true, value: params[:email_address],
-                        class: "block shadow rounded-md border border-gray-400 px-3 py-2 mt-2 w-full" %>
-
-  <%= form.password_field :password, required: true, placeholder: "Enter your password", maxlength: 72,
-                            class: "block shadow rounded-md border border-gray-400  px-3 py-2 mt-2 w-full" %>
-
-  <%= form.password_field :password_confirmation, required: true, placeholder: "Confirm your password",
-                        maxlength: 72, class: "block shadow rounded-md border border-gray-400 px-3 py-2 mt-2 w-full" %>
-
-  <%= form.submit "Sign up", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block cursor-pointer" %>
+  <%= form.text_field :name, required: true, placeholder: "Name", autofocus: true, value: params[:name] %>
+  <%= form.email_field :email_address, required: true, placeholder: "example@domain.com", value: params[:email_address] %>
+  <%= form.password_field :password, required: true, placeholder: "Enter your password", maxlength: 72 %>
+  <%= form.password_field :password_confirmation, required: true, placeholder: "Confirm your password", maxlength: 72 %>
+  <%= form.submit "Sign up" %>
 <% end %>

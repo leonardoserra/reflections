@@ -1,10 +1,10 @@
 class ReflectionsController < ApplicationController
   def index
-    @reflections = Reflection.all
+    @reflections = Reflection.where(user: current_user)
   end
 
   def show
-    @reflection = Reflection.find(params[:id])
+    @reflection = Reflection.find_by!(id: params[:id], user: current_user)
   end
 
   def new
@@ -13,23 +13,23 @@ class ReflectionsController < ApplicationController
 
   def create
     @reflection = Reflection.new(create_params)
-    @reflection.user = Current.user
+    @reflection.user = current_user
 
     @page = Page.new(number: 1, body: "", pageable_type: "Reflection",
                      pageable_id: @reflection.id)
     @reflection.page = @page
 
     if @reflection.save && @page.save
-      redirect_to @reflection, alert: success_create
+      redirect_to @reflection, notice: success_create
     else
       render :new, status: :unprocessable_entity, alert: error_create
     end
   end
 
   def destroy
-    @reflection = Reflection.find(destroy_params)
+    @reflection = Reflection.find_by!(id: destroy_params, user: current_user)
     if @reflection.destroy
-      redirect_to root_path, alert: success_destroy
+      redirect_to root_path, notice: success_destroy
     else
       redirect_to root_path, alert: error_destroy
     end

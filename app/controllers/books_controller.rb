@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { redirect_to new_book_path, alert: "Too many creations at once." }, unless: -> { Rails.env.test? }
   def index
-    @books = Book.all
+    @books = Book.where(user: current_user)
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by!(id: params[:id], user: current_user)
     @page_number = page_number
   end
 
@@ -15,22 +15,23 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(create_params)
-    @book.user = Current.user
+    @book.user = current_user
+
     @page = Page.new(number: 1, body: "", pageable_type: "Book",
                      pageable_id: @book.id)
     @book.pages << @page
 
     if @book.save && @page.save
-      redirect_to @book, alert: success_create
+      redirect_to @book, notice: success_create
     else
       render :new, status: :unprocessable_entity, alert: error_create
     end
   end
 
   def destroy
-    @book = Book.find(destroy_params)
+    @book = Book.find_by!(id: destroy_params, user: current_user)
     if @book.destroy
-      redirect_to root_path, alert: success_destroy
+      redirect_to root_path, notice: success_destroy
     else
       redirect_to root_path, alert: error_destroy
     end

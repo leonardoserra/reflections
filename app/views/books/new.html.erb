@@ -2,8 +2,7 @@
 
 <%= form_with model: @book do |form| %>
   <div>
-    <%= form.label :name %>
-    <%= form.text_field :name, required: true, placeholder: "Name" %>
+    <%= form.text_field :name, required: true, placeholder: "Name", autofocus: true %>
   </div>
 
   <div>

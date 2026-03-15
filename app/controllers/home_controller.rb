@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @journals = Journal.all
-    @books = Book.all
-    @reflections = Reflection.all
+    @journals = Journal.where(user: current_user)
+    @books = Book.where(user: current_user)
+    @reflections = Reflection.where(user: current_user)
   end
 end

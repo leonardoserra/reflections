@@ -31,14 +31,14 @@ html {
       border: 1px solid var(--primary-color);
       background-color: var(--light-color);
 
-      &.success {
+      &.notice {
         border-color: var(--success-color);
         background-color: var(--soft-success-color);
       }
 
       &.alert {
-        border-color: var(--success-color);
-        background-color: var(--soft-success-color);
+        border-color: var(--danger-color);
+        background-color: var(--soft-danger-color);
       }
     }
   }

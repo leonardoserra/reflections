@@ -1,10 +1,10 @@
 class JournalsController < ApplicationController
   def index
-    @journals = Journal.all
+    @journals = Journal.where(user: current_user)
   end
 
   def show
-    @journal = Journal.find(params[:id])
+    @journal = Journal.find_by!(id: params[:id], user: current_user)
   end
 
   def new
@@ -13,28 +13,31 @@ class JournalsController < ApplicationController
 
   def create
     @journal = Journal.new(create_params)
-    @journal.user = Current.user
+    @journal.user = current_user
+
     @page = Page.new(number: 1, body: "", pageable_type: @journal,
                      pageable_id: @journal.id)
     @journal.pages << @page
 
     if @journal.save && @page.save
-      redirect_to @journal, alert: success_create
+      redirect_to @journal, notice: success_create
     else
       render :new, status: :unprocessable_entity, alert: error_create
     end
   end
 
   def destroy
-    @journal = Journal.find(destroy_params)
-    if @journal.destroy
-      redirect_to root_path, alert: success_destroy
+    @journal = Journal.find_by!(id: destroy_params, user: current_user)
+
+    if @journal.destroy!
+      redirect_to root_path, notice: success_destroy
     else
       redirect_to root_path, alert: error_destroy
     end
   end
 
   private
+
     def create_params
       params.expect(journal: [ :name ])
     end
