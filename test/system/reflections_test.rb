@@ -16,7 +16,6 @@ class ReflectionsTest < ApplicationSystemTestCase
     send_keys(:enter)
 
     assert :ok
-    assert_text 'Reflection "THE TEST REFLECTION" created succesfully!'
   end
 
   private

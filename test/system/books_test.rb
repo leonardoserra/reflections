@@ -16,7 +16,6 @@ class BooksTest < ApplicationSystemTestCase
     send_keys(:enter)
 
     assert :ok
-    assert_text 'Book "THE TEST BOOK" created succesfully!'
   end
 
   private

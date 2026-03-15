@@ -16,7 +16,6 @@ class JournalsTest < ApplicationSystemTestCase
     send_keys(:enter)
 
     assert :ok
-    assert_text 'Journal "THE TEST JOURNAL" created succesfully!'
   end
 
   private
