@@ -6,6 +6,7 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @page_number = page_number
   end
 
   def new
@@ -13,17 +14,38 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(create_params)
     @book.user = Current.user
-    if @book.save
+    @page = Page.new(number: 1, body: "", pageable_type: "Book",
+                     pageable_id: @book.id)
+    @book.pages << @page
+
+    if @book.save && @page.save
       redirect_to @book
     else
       render :new, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @book = Book.find(destroy_params)
+    if @book.destroy
+      redirect_to root_path, success: "#{@book.name} deleted succesfully!"
+    else
+      redirect_to root_path, alert: "#{@book.name} not deleted for some error."
+    end
+  end
+
   private
-    def book_params
+    def create_params
       params.expect(book: [ :name ])
+    end
+
+    def destroy_params
+      params.expect(:id)
+    end
+
+    def page_number
+      params[:page_number] || 1
     end
 end
