@@ -25,7 +25,7 @@
   </div>
   <div class="document-list-card">
     <h2 class="section-title pb-1">Your Reflections</h2>
-    <%= link_to "NEW REFLECTION", "new_#{Reflection.to_s.downcase}".to_sym, class: "button success sm" %>
+    <%= link_to "NEW REFLECTION", new_reflection_path, class: "button success sm" %>
     <ul>
       <% @reflections.each do |r| %>
       <li class="pt-1">
