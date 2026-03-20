@@ -1,11 +1,9 @@
-  <% if document.respond_to?(:pages) %>
-    <% document.pages.each do |page| %>
-      <div class="page-container">
-        <p ><%= page.body %></p>
-      </div>
-    <% end %>
-  <% else %>
-      <div class="page-container">
-        <p ><%= document.page.body %></p>
-      </div>
-  <% end %>
+<div class="page-number">
+  <div>
+
+    <%= page.number %>
+  </div>
+</div>
+<div class="page-body">
+  <p><%= page.body %></p>
+</div>
