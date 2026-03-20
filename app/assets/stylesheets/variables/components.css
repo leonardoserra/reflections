@@ -58,3 +58,12 @@
   border: 1px solid var(--primary-color);
   box-shadow: 1rem 1rem var(--soft-primary-color);
 }
+
+.page-container {
+  height: 700px;
+  margin: var(--second-level-spacing);
+  padding: var(--first-level-spacing);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--primary-color);
+  box-shadow: 1rem 1rem var(--soft-primary-color);
+}

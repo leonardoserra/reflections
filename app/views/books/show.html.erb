@@ -1,9 +1,6 @@
 <h1><%= @document.name %></h1>
+<%= link_to "Back Home", "/" %>
 
 <div>
-  <% @document.pages.each do |page| %>
-    <p><%= page.body %></p>
-  <% end %>
+  <%= render "shared/partials/page_container", document: @document %>
 </div>
-
-<%= link_to "Back Home", "/" %>
