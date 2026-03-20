@@ -102,7 +102,7 @@ jobs:
           bundler-cache: true
 
       - name: Run System Tests with Retry
-        uses: nick-fields/retry@v3
+        uses: nick-fields/retry@v4
         with:
           timeout_minutes: 15
           max_attempts: 5
