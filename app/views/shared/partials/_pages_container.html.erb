@@ -1,9 +1,3 @@
 <div class="pages-container">
-  <% if document.respond_to?(:pages) %>
-  <%# document.pages.each do |page| %>
-    <%= render "shared/partials/page_container", page: document.pages[0] %>
-  <%# end %>
-  <% else %>
-    <%= render "shared/partials/page_container", page: document.page %>
-  <% end %>
+  <%= render "shared/partials/page_container", document: document %>
 </div>
