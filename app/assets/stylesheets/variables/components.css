@@ -58,3 +58,25 @@
   border: 1px solid var(--primary-color);
   box-shadow: 1rem 1rem var(--soft-primary-color);
 }
+
+.pages-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
+  .page-number {
+    width: calc(100% / 3);
+    font-style: italic;
+    color: var(--soft-dark-grey);
+  }
+
+  .page-body {
+    width: calc(100% / 3);
+    height: 75vh;
+    overflow-y: scroll;
+    margin: var(--second-level-spacing) auto;
+    padding: var(--first-level-spacing);
+    border: 1px solid var(--primary-color);
+    box-shadow: 1rem 1rem var(--soft-primary-color);
+  }
+}

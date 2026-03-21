@@ -1,0 +1,15 @@
+<div class="page-number">
+  <div>
+    <%= document.bookmark %>
+  </div>
+</div>
+<div class="page-body">
+  <p><%= Document.current_page(document) %></p>
+</div>
+<div class="page-number">
+  <div>
+    <% document.pages.size.times do |i| %>
+      <%= i %>
+    <% end %>
+  </div>
+</div>
