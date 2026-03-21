@@ -19,7 +19,7 @@ class DocumentsController < ApplicationController
     @document = model.new(create_params)
     @document.user = current_user
 
-    @page = Page.new(number: 1, body: "", pageable_type: model,
+    @page = Page.new(number: 1, pageable_type: model,
                      pageable_id: @document.id)
 
     # Book and Journal has_many pages
