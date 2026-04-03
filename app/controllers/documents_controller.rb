@@ -9,6 +9,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = model.find_by!(id: params[:id], user: current_user)
+    @current_page = @document.current_page
   end
 
   def new
@@ -19,7 +20,7 @@ class DocumentsController < ApplicationController
     @document = model.new(create_params)
     @document.user = current_user
 
-    @page = Page.new(number: 1, body: "", pageable_type: model.to_s,
+    @page = Page.new(number: 1, pageable_type: model,
                      pageable_id: @document.id)
 
     # Book and Journal has_many pages

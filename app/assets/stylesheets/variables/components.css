@@ -58,3 +58,26 @@
   border: 1px solid var(--primary-color);
   box-shadow: 1rem 1rem var(--soft-primary-color);
 }
+
+.pages-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
+  .left-side,
+  .right-side {
+    width: 15%;
+    font-style: italic;
+    color: var(--primary-color);
+    padding: var(--second-level-spacing);
+  }
+
+  .center-side {
+    min-width: 70%;
+    height: 75vh;
+    overflow-y: scroll;
+    padding: var(--second-level-spacing);
+    border: 1px solid var(--primary-color);
+    box-shadow: 1rem 1rem var(--soft-primary-color);
+  }
+}
