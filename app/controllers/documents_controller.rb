@@ -9,6 +9,7 @@ class DocumentsController < ApplicationController
 
   def show
     @document = model.find_by!(id: params[:id], user: current_user)
+    @current_page = @document.current_page
   end
 
   def new

@@ -1,15 +1,11 @@
-<div class="page-number">
-  <div>
-    <%= document.bookmark %>
-  </div>
+<div class="left-side">
+  <div>Page [<%= bookmark %>]</div>
 </div>
-<div class="page-body">
-  <p><%= Document.current_page(document) %></p>
+
+<div class="center-side">
+  <p><%= current_page.body %></p>
 </div>
-<div class="page-number">
-  <div>
-    <% document.pages.size.times do |i| %>
-      <%= i %>
-    <% end %>
-  </div>
+
+<div class="right-side">
+  <p><%= current_page.body %></p>
 </div>

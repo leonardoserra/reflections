@@ -64,18 +64,19 @@
   justify-content: space-around;
   flex-direction: row;
 
-  .page-number {
-    width: calc(100% / 3);
+  .left-side,
+  .right-side {
+    width: 15%;
     font-style: italic;
-    color: var(--soft-dark-grey);
+    color: var(--primary-color);
+    padding: var(--second-level-spacing);
   }
 
-  .page-body {
-    width: calc(100% / 3);
+  .center-side {
+    min-width: 70%;
     height: 75vh;
     overflow-y: scroll;
-    margin: var(--second-level-spacing) auto;
-    padding: var(--first-level-spacing);
+    padding: var(--second-level-spacing);
     border: 1px solid var(--primary-color);
     box-shadow: 1rem 1rem var(--soft-primary-color);
   }
