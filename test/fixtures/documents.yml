@@ -8,6 +8,7 @@ journal_one:
 book_one:
   type: Book
   name: Topolino
+  author: Walt Disney
   user: two
 
 reflection_one:

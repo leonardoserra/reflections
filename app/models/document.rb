@@ -3,7 +3,7 @@ class Document < ApplicationRecord
 
   validates :name, presence: true
 
-  def current_page
-    Page.find_by(number: bookmark, pageable_id: id)
+  def ordered_pages
+    raise NotImplementedError
   end
 end
