@@ -1,5 +1,13 @@
 <div class="pages-container">
   <% if current_page %>
+    <% unless document.is_a?(Reflection) %>
+      <div class="page-toolbar">
+        <%= form_with url: pages_path, scope: :page, method: :post do |form| %>
+          <%= form.hidden_field :pageable_id, value: document.id %>
+          <%= form.submit "+ New Page", class: "button primary sm" %>
+        <% end %>
+      </div>
+    <% end %>
     <%= render "shared/partials/page_body", current_page: current_page %>
   <% else %>
     <p class="center-side"><em>No pages yet.</em></p>

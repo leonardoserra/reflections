@@ -157,6 +157,19 @@
   }
 }
 
+.page-toolbar {
+  max-width: 50rem;
+  margin: 0 auto var(--second-level-spacing);
+  text-align: right;
+}
+
+.char-counter {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  margin-top: 0.25rem;
+}
+
 .author {
   color: var(--secondary-color);
   font-style: italic;

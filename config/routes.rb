@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :registrations, only: [ :new, :create ]
 
   # pages
-  resources :pages, only: [ :update ]
+  resources :pages, only: [ :update, :create ]
 
   # journals
   resources :journals, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
