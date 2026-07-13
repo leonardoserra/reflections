@@ -1,3 +1,11 @@
 <div class="pages-container">
-  <%= render "shared/partials/page_container", bookmark: document.bookmark, current_page: document.current_page %>
+  <% if current_page %>
+    <%= render "shared/partials/page_body", current_page: current_page %>
+  <% else %>
+    <p class="center-side"><em>No pages yet.</em></p>
+  <% end %>
 </div>
+
+<% if current_page %>
+  <%= render "shared/partials/pagination", document: document, current_page_num: current_page.number, total_pages: total_pages %>
+<% end %>

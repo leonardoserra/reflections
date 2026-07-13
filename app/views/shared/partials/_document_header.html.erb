@@ -1,0 +1,4 @@
+<h1><%= document.name %></h1>
+<% if document.is_a?(Book) && document.author.present? %>
+  <p class="author">by <%= document.author %></p>
+<% end %>

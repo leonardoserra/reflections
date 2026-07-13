@@ -1,0 +1,42 @@
+<div id="<%= dom_id(current_page, :body) %>" class="center-side"
+     data-controller="inline-edit"
+     data-action="click->inline-edit#edit click@window->inline-edit#clickOutside">
+  <div data-inline-edit-target="display"
+       data-original-body="<%= current_page.body %>"
+       data-original-page-date="<%= current_page.page_date&.strftime("%Y-%m-%dT%H:%M") %>"
+       data-original-place="<%= current_page.place %>">
+    <% if current_page.pageable_type == "Journal" %>
+      <div class="page-meta">
+        <% if current_page.page_date.present? %>
+          <span class="page-date"><%= current_page.page_date.strftime("%B %d, %Y at %H:%M") %></span>
+        <% end %>
+        <% if current_page.place.present? %>
+          <span class="page-place"><%= current_page.place %></span>
+        <% end %>
+      </div>
+    <% end %>
+    <% if current_page.body.present? %>
+      <div><%= current_page.body %></div>
+    <% else %>
+      <div><em>Click to edit...</em></div>
+    <% end %>
+  </div>
+
+  <%= form_with model: current_page,
+                data: { inline_edit_target: "form" },
+                class: "hidden" do |form| %>
+    <% if current_page.pageable_type == "Journal" %>
+      <div class="page-meta-fields">
+        <%= form.datetime_field :page_date, value: form.object.page_date&.strftime("%Y-%m-%dT%H:%M") %>
+        <%= form.text_field :place, placeholder: "Optional place..." %>
+      </div>
+    <% end %>
+    <%= form.textarea :body,
+                      data: { inline_edit_target: "textarea" },
+                      placeholder: "Write your thoughts here..." %>
+    <div class="form-actions">
+      <button type="button" class="button primary sm" data-action="inline-edit#save">Save</button>
+      <button type="button" class="button sm" data-action="inline-edit#cancel">Cancel</button>
+    </div>
+  <% end %>
+</div>
