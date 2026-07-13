@@ -2,7 +2,11 @@
 
 <%= form_with model: @document do |form| %>
   <div>
-    <%= form.text_field :name, required: true, placeholder: "Name", autofocus: true %>
+    <%= form.text_field :name, required: true, placeholder: "Title", autofocus: true %>
+  </div>
+
+  <div>
+    <%= form.text_field :author, placeholder: "Author" %>
   </div>
 
   <div>
