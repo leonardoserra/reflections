@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema[8.1].define(version: 2026_03_05_233430) do
   create_table "documents", force: :cascade do |t|
+    t.string "author"
     t.integer "bookmark", default: 1
     t.datetime "created_at", null: false
     t.string "name"
@@ -25,11 +26,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_05_233430) do
     t.text "body", default: ""
     t.datetime "created_at", null: false
     t.integer "number", default: 1
+    t.datetime "page_date"
     t.integer "pageable_id", null: false
     t.string "pageable_type", null: false
+    t.string "place"
     t.datetime "updated_at", null: false
     t.index ["number", "pageable_id"], name: "index_pages_on_number_and_pageable_id", unique: true
     t.index ["pageable_type", "pageable_id"], name: "index_pages_on_pageable"
+    t.index ["pageable_type", "pageable_id"], name: "index_pages_unique_on_reflection", unique: true, where: "pageable_type = 'Reflection'"
   end
 
   create_table "sessions", force: :cascade do |t|
