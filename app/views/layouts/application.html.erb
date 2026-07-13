@@ -29,7 +29,9 @@
       <div id="flash">
         <%= render "layouts/partials/flash_message" %>
       </div>
-      <%= yield %>
+      <div class="main-scroll">
+        <%= yield %>
+      </div>
     </main>
     <%= render "layouts/partials/footer", current_user: Current.user %>
   </body>

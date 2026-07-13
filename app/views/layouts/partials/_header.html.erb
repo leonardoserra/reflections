@@ -1,7 +1,16 @@
 <header>
   <nav>
-    <%= link_to "Home", root_path, class: "button primary sm" %>
-    <%= link_to "Register", new_registration_path, class: "button primary sm"  unless authenticated? %>
-    <%= button_to "Log out", session_path, method: :delete, class: "button secondary sm" if authenticated? %>
+    <div class="nav-left">
+      <%= link_to "Home", root_path, class: "button primary sm" %>
+      <%= link_to "Register", new_registration_path, class: "button primary sm"  unless authenticated? %>
+    </div>
+    <div class="nav-center">
+      <% if authenticated? %>
+        Logged with: [<%= Current.user&.name %>]
+      <% end %>
+    </div>
+    <div class="nav-right">
+      <%= button_to "Log out", session_path, method: :delete, class: "button secondary sm" if authenticated? %>
+    </div>
   </nav>
 </header>
