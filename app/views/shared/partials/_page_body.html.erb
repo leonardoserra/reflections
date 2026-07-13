@@ -32,8 +32,12 @@
       </div>
     <% end %>
     <%= form.textarea :body,
-                      data: { inline_edit_target: "textarea" },
-                      placeholder: "Write your thoughts here..." %>
+                      data: { inline_edit_target: "textarea", action: "input->inline-edit#updateCounter" },
+                      placeholder: "Write your thoughts here...",
+                      maxlength: 1500 %>
+    <div class="char-counter">
+      <span data-inline-edit-target="counter"><%= current_page.body.length %> / 1500</span>
+    </div>
     <div class="form-actions">
       <button type="button" class="button primary sm" data-action="inline-edit#save">Save</button>
       <button type="button" class="button sm" data-action="inline-edit#cancel">Cancel</button>
