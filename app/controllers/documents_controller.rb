@@ -65,6 +65,14 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def bulk_destroy
+    ids = Array(params[:document_ids])
+    documents = Document.where(id: ids, user: current_user)
+    count = documents.size
+    documents.destroy_all
+    redirect_to root_path, notice: "Deleted #{count} #{'document'.pluralize(count)}."
+  end
+
   private
 
     def model

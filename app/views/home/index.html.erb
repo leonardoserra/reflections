@@ -1,38 +1,74 @@
-<div class="index-container">
+<div class="index-container" data-controller="selection">
   <div class="document-list-card">
     <h2 class="section-title pb-1" >Your Journals</h2>
-    <%= link_to "NEW JOURNAL", new_journal_path, class: "button success sm" %>
+    <%= link_to "NEW JOURNAL", new_journal_path, class: "button success sm create-button" %>
     <ul>
       <% @journals.each do |j| %>
-      <li class="pt-1">
-        <%= link_to j.name, journal_path(j.id), class: "pl-1" %>
-        <%= button_to "X", journal_path(j.id), method: :delete , class: "button xs danger" if authenticated? %>
+      <li class="pt-1" data-document-id="<%= j.id %>">
+        <%= link_to j.name, journal_path(j.id),
+            class: "pl-1 document-link",
+            data: { action: "click->selection#toggleSelect", document_id: j.id } %>
+        <%= button_to "X", journal_path(j.id), method: :delete,
+            class: "button xs danger single-delete",
+            data: { action: "click->selection#confirmSingleDelete",
+                    document_name: j.name } if authenticated? %>
       </li>
       <% end %>
     </ul>
   </div>
   <div class="document-list-card">
     <h2 class="section-title pb-1">Your Books</h2>
-    <%= link_to "NEW BOOK", new_book_path, class: "button success sm" %>
+    <%= link_to "NEW BOOK", new_book_path, class: "button success sm create-button" %>
     <ul>
       <% @books.each do |b| %>
-      <li class="pt-1">
-        <%= link_to b.name, book_path(b.id), class: "pl-1" %>
-        <%= button_to "X", book_path(b.id), method: :delete , class: "button xs danger" if authenticated? %>
+      <li class="pt-1" data-document-id="<%= b.id %>">
+        <%= link_to b.name, book_path(b.id),
+            class: "pl-1 document-link",
+            data: { action: "click->selection#toggleSelect", document_id: b.id } %>
+        <%= button_to "X", book_path(b.id), method: :delete,
+            class: "button xs danger single-delete",
+            data: { action: "click->selection#confirmSingleDelete",
+                    document_name: b.name } if authenticated? %>
       </li>
       <% end %>
     </ul>
   </div>
   <div class="document-list-card">
     <h2 class="section-title pb-1">Your Reflections</h2>
-    <%= link_to "NEW REFLECTION", new_reflection_path, class: "button success sm" %>
+    <%= link_to "NEW REFLECTION", new_reflection_path, class: "button success sm create-button" %>
     <ul>
       <% @reflections.each do |r| %>
-      <li class="pt-1">
-        <%= link_to r.name, r, class: "pl-1" %>
-        <%= button_to "X", r, method: :delete , class: "button xs danger" if authenticated? %>
-        </li>
+      <li class="pt-1" data-document-id="<%= r.id %>">
+        <%= link_to r.name, r,
+            class: "pl-1 document-link",
+            data: { action: "click->selection#toggleSelect", document_id: r.id } %>
+        <%= button_to "X", r, method: :delete,
+            class: "button xs danger single-delete",
+            data: { action: "click->selection#confirmSingleDelete",
+                    document_name: r.name } if authenticated? %>
+      </li>
       <% end %>
     </ul>
   </div>
+
+  <div class="selection-action-bar" data-selection-target="actionBar">
+    <button class="button primary"
+            data-action="click->selection#toggle"
+            data-selection-target="selectButton">
+        Delete Multi
+    </button>
+    <span class="selection-action-bar-secondary hidden" data-selection-target="secondaryActions">
+      <button class="button danger" data-action="click->selection#confirmBulkDestroy">
+        Delete Selected (<span data-selection-target="selectedCount">0</span>)
+      </button>
+    </span>
+  </div>
+
+  <dialog data-selection-target="dialog" class="confirm-dialog">
+    <p data-selection-target="dialogMessage"></p>
+    <div class="form-actions" style="justify-content: center; margin-top: 1.5rem;">
+      <button class="button danger" data-action="click->selection#confirm">Delete</button>
+      <button class="button secondary" data-action="click->selection#closeDialog">Cancel</button>
+    </div>
+  </dialog>
 </div>
