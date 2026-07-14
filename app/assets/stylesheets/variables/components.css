@@ -221,3 +221,55 @@
 .hidden {
   display: none !important;
 }
+
+.selection-active li {
+  cursor: pointer;
+}
+
+.selection-active li.selected .document-link {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.selection-active .single-delete {
+  display: none;
+}
+
+.selection-active .create-button {
+  visibility: hidden;
+}
+
+.selection-action-bar {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  z-index: 100;
+}
+
+.selection-action-bar-secondary {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.confirm-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  padding: var(--second-level-spacing);
+  box-shadow: 0.5rem 0.5rem var(--soft-primary-color);
+  background: var(--light-color);
+  max-width: 28rem;
+  text-align: center;
+}
+
+.confirm-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+}

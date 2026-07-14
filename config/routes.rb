@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   # reflections
   resources :reflections, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
 
+  # bulk document operations
+  resources :documents, only: [] do
+    collection do
+      post :bulk_destroy
+    end
+  end
+
   # healtcheck
   get "/up", to: "rails/health#show", as: :rails_health_check
 
