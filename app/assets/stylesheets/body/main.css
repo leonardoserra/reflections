@@ -1,8 +1,15 @@
 /*@import "../spacing/root.css";*/
 
 main {
-  width: 100vw;
-  height: calc(100vh - 7rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .main-scroll {
+    flex: 1;
+    overflow-y: auto;
+  }
 
   .index-container {
     display: flex;

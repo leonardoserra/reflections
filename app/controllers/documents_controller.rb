@@ -9,6 +9,15 @@ class DocumentsController < ApplicationController
 
   def show
     @document = model.find_by!(id: params[:id], user: current_user)
+    @total_pages = @document.ordered_pages.count
+    page_number = (params[:page] || @document.bookmark).to_i
+    @current_page = @document.ordered_pages.find_by(number: page_number) || @document.ordered_pages.first
+
+    if @current_page.nil?
+      redirect_to root_path, alert: "No pages found for this document." and return
+    end
+
+    @document.update_column(:bookmark, @current_page.number) if params[:page].present?
   end
 
   def new
@@ -19,26 +28,36 @@ class DocumentsController < ApplicationController
     @document = model.new(create_params)
     @document.user = current_user
 
-    @page = Page.new(number: 1, body: "", pageable_type: model.to_s,
-                     pageable_id: @document.id)
-
-    # Book and Journal has_many pages
-    # Reflection has_one page
-    if @document.respond_to?(:pages)
-      @document.pages << @page
-    else
-      @document.page = @page
+    ApplicationRecord.transaction do
+      @document.save!
+      if model == Reflection
+        @document.create_page!(number: 1)
+      else
+        @document.pages.create!(number: 1)
+      end
     end
 
-    if @document.save && @page.save
-      redirect_to @document, notice: success_create
+    redirect_to @document, notice: success_create
+  rescue ActiveRecord::RecordInvalid => e
+    @document.errors.add(:base, e.record.errors.full_messages.to_sentence) if e.record != @document
+    render :new, status: :unprocessable_entity
+  end
+
+  def edit
+    @document = model.find_by!(id: params[:id], user: current_user)
+  end
+
+  def update
+    @document = model.find_by!(id: params[:id], user: current_user)
+    if @document.update(update_params)
+      redirect_to @document, notice: success_update
     else
-      render :new, status: :unprocessable_entity, alert: error_create
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @document = model.find_by!(id: destroy_params, user: current_user)
+    @document = model.find_by!(id: params[:id], user: current_user)
     if @document.destroy
       redirect_to root_path, notice: success_destroy
     else
@@ -56,27 +75,23 @@ class DocumentsController < ApplicationController
       params.expect(model.to_s.downcase.to_sym => [ :name ])
     end
 
-    def destroy_params
-      params.expect(:id)
-    end
-
-    def page_number
-      params[:page_number] || 1
+    def update_params
+      params.expect(model.to_s.downcase.to_sym => [ :name ])
     end
 
     def success_create
-       "#{model} \"#{@document.name}\" created succesfully!"
+       "#{model} \"#{@document.name}\" created successfully!"
     end
 
-    def error_create
-      "#{model} \"#{@document.name}\" not created for some error."
+    def success_update
+      "#{model} \"#{@document.name}\" updated successfully!"
     end
 
     def success_destroy
-       "#{model} \"#{@document.name}\" deleted succesfully!"
+       "#{model} \"#{@document.name}\" deleted successfully!"
     end
 
     def error_destroy
-      "#{model} \"#{@document.name}\" not deleted for some error."
+      "#{model} \"#{@document.name}\" could not be deleted."
     end
 end

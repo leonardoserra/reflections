@@ -6,14 +6,17 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
   resources :registrations, only: [ :new, :create ]
 
+  # pages
+  resources :pages, only: [ :update, :create ]
+
   # journals
-  resources :journals, only: [ :index, :show, :new, :create, :destroy ]
+  resources :journals, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
 
   # books
-  resources :books, only: [ :index, :show, :new, :create, :destroy ]
+  resources :books, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
 
   # reflections
-  resources :reflections, only: [ :index, :show, :new, :create, :destroy ]
+  resources :reflections, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
 
   # healtcheck
   get "/up", to: "rails/health#show", as: :rails_health_check

@@ -1,0 +1,44 @@
+<div id="<%= dom_id(current_page, :body) %>">
+  <div class="center-side"
+       data-action="click->inline-edit#edit">
+    <div data-inline-edit-target="display"
+         class="<%= 'hidden' if local_assigns[:form_visible] %>"
+         data-original-body="<%= current_page.body %>"
+         data-original-page-date="<%= current_page.page_date&.strftime("%Y-%m-%dT%H:%M") %>"
+         data-original-place="<%= current_page.place %>">
+      <% if current_page.journal_page? %>
+        <div class="page-meta">
+          <% if current_page.page_date.present? %>
+            <span class="page-date"><%= current_page.page_date.strftime("%B %d, %Y at %H:%M") %></span>
+          <% end %>
+          <% if current_page.place.present? %>
+            <span class="page-place"><%= current_page.place %></span>
+          <% end %>
+        </div>
+      <% end %>
+      <% if current_page.body.present? %>
+        <pre><%= current_page.body %></pre>
+      <% else %>
+        <pre>Click to edit...</pre>
+      <% end %>
+    </div>
+
+    <%= form_with model: current_page,
+                  data: { inline_edit_target: "form", turbo_stream: true },
+                  class: (local_assigns[:form_visible] ? "" : "hidden") do |form| %>
+      <% if current_page.journal_page? %>
+        <div class="page-meta-fields">
+          <%= form.datetime_field :page_date, value: form.object.page_date&.strftime("%Y-%m-%dT%H:%M") %>
+          <%= form.text_field :place, placeholder: "Optional place..." %>
+        </div>
+      <% end %>
+      <%= form.textarea :body,
+                        data: { inline_edit_target: "textarea", action: "input->inline-edit#updateCounter click@window->inline-edit#clickOutside" },
+                        placeholder: "Write your thoughts here...",
+                        maxlength: Page::MAX_BODY_LENGTH %>
+      <div class="char-counter">
+        <span data-inline-edit-target="counter"><%= current_page.body.length %> / <%= Page::MAX_BODY_LENGTH %></span>
+      </div>
+    <% end %>
+  </div>
+</div>

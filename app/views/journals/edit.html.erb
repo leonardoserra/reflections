@@ -1,0 +1,13 @@
+<h1>Edit journal</h1>
+
+<%= form_with model: @document do |form| %>
+  <div>
+    <%= form.text_field :name, placeholder: "Name", autofocus: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Update" %>
+  </div>
+<% end %>
+
+<%= link_to "Cancel", @document %>

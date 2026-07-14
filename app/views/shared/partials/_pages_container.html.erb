@@ -1,0 +1,28 @@
+<div class="pages-container"
+     data-controller="inline-edit">
+  <% if current_page %>
+    <div class="page-toolbar">
+      <div class="toolbar-left">
+        <div class="form-actions hidden" data-inline-edit-target="formActions">
+          <button type="button" class="button primary sm" data-action="inline-edit#save">Save</button>
+          <button type="button" class="button sm" data-action="inline-edit#cancel">Cancel</button>
+        </div>
+      </div>
+      <div class="toolbar-right">
+        <% unless document.is_a?(Reflection) %>
+          <%= form_with url: pages_path, scope: :page, method: :post do |form| %>
+            <%= form.hidden_field :pageable_id, value: document.id %>
+            <%= form.submit "+", class: "button primary sm" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <%= render "shared/partials/page_body", current_page: current_page %>
+  <% else %>
+    <p class="center-side"><em>No pages yet.</em></p>
+  <% end %>
+</div>
+
+<% if current_page %>
+  <%= render "shared/partials/pagination", document: document, current_page_num: current_page.number, total_pages: total_pages %>
+<% end %>
