@@ -85,8 +85,7 @@ export default class extends Controller {
   clickOutside(event) {
     if (this.formTarget.classList.contains("hidden")) return
     if (this.element.contains(event.target)) return
-    const saveBtn = this.formActionsTarget.querySelector("[data-action$='#save']")
-    if (saveBtn) saveBtn.click()
+    this.save(event)
   }
 
   updateCounter(event) {
