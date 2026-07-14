@@ -33,7 +33,7 @@
         </div>
       <% end %>
       <%= form.textarea :body,
-                        data: { inline_edit_target: "textarea", action: "input->inline-edit#updateCounter" },
+                        data: { inline_edit_target: "textarea", action: "input->inline-edit#updateCounter click@window->inline-edit#clickOutside" },
                         placeholder: "Write your thoughts here...",
                         maxlength: Page::MAX_BODY_LENGTH %>
       <div class="char-counter">
