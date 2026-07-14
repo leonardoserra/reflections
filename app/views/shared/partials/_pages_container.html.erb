@@ -1,13 +1,19 @@
-<div class="pages-container">
+<div class="pages-container"
+     data-controller="inline-edit"
+     data-action="click@window->inline-edit#clickOutside">
   <% if current_page %>
-    <% unless document.is_a?(Reflection) %>
-      <div class="page-toolbar">
+    <div class="page-toolbar">
+      <div class="form-actions hidden" data-inline-edit-target="formActions">
+        <button type="button" class="button primary sm" data-action="inline-edit#save">Save</button>
+        <button type="button" class="button sm" data-action="inline-edit#cancel">Cancel</button>
+      </div>
+      <% unless document.is_a?(Reflection) %>
         <%= form_with url: pages_path, scope: :page, method: :post do |form| %>
           <%= form.hidden_field :pageable_id, value: document.id %>
           <%= form.submit "+ New Page", class: "button primary sm" %>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
     <%= render "shared/partials/page_body", current_page: current_page %>
   <% else %>
     <p class="center-side"><em>No pages yet.</em></p>

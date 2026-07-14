@@ -1,7 +1,6 @@
-<div id="<%= dom_id(current_page, :body) %>"
-     data-controller="inline-edit"
-     data-action="click->inline-edit#edit click@window->inline-edit#clickOutside">
-  <div class="center-side">
+<div id="<%= dom_id(current_page, :body) %>">
+  <div class="center-side"
+       data-action="click->inline-edit#edit">
     <div data-inline-edit-target="display"
          data-original-body="<%= current_page.body %>"
          data-original-page-date="<%= current_page.page_date&.strftime("%Y-%m-%dT%H:%M") %>"
@@ -40,10 +39,5 @@
         <span data-inline-edit-target="counter"><%= current_page.body.length %> / 1500</span>
       </div>
     <% end %>
-  </div>
-
-  <div class="form-actions hidden" data-inline-edit-target="formActions">
-    <button type="button" class="button primary sm" data-action="inline-edit#save">Save</button>
-    <button type="button" class="button sm" data-action="inline-edit#cancel">Cancel</button>
   </div>
 </div>

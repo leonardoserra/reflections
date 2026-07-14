@@ -1,5 +1,5 @@
-<% if total_pages > 1 %>
-  <nav class="pagination">
+<nav class="pagination">
+  <% if total_pages > 1 %>
     <%= link_to "<<", polymorphic_path(document, page: 1), class: "page-link" %>
     <%= link_to "<", polymorphic_path(document, page: [current_page_num - 1, 1].max), class: "page-link" %>
 
@@ -12,5 +12,6 @@
 
     <%= link_to ">", polymorphic_path(document, page: [current_page_num + 1, total_pages].min), class: "page-link" %>
     <%= link_to ">>", polymorphic_path(document, page: total_pages), class: "page-link" %>
-  </nav>
-<% end %>
+  <% end %>
+  <span class="daruma-link">Made by <%= link_to "Daruma", "https://darumabeats404.bandcamp.com", target: "_blank" %></span>
+</nav>
