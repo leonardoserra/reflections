@@ -22,6 +22,34 @@ export default class extends Controller {
     this.formTarget.addEventListener("turbo:submit-end", () => {
       this.isSaving = false
     })
+
+    this._pageLinkHandler = (event) => {
+      const link = event.target.closest(".page-link")
+      if (!link) return
+      if (this.formTarget.classList.contains("hidden")) return
+
+      event.preventDefault()
+      event.stopPropagation()
+
+      const href = link.href
+      if (this.isSaving) return
+      this.isSaving = true
+
+      const afterSave = () => {
+        this.formTarget.removeEventListener("turbo:submit-end", afterSave)
+        this.isSaving = false
+        window.location.href = href
+      }
+
+      this.formTarget.addEventListener("turbo:submit-end", afterSave)
+      this.formTarget.requestSubmit()
+    }
+
+    document.addEventListener("click", this._pageLinkHandler)
+  }
+
+  disconnect() {
+    document.removeEventListener("click", this._pageLinkHandler)
   }
 
   save(event) {

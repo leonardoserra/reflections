@@ -7,13 +7,25 @@ header > nav {
 }
 
 header > nav > .nav-left,
+header > nav > .nav-center,
+header > nav > .nav-right {
+  flex: 1;
+}
+
+header > nav > .nav-left {
+  display: flex;
+  align-items: center;
+  gap: var(--first-level-spacing);
+  justify-content: flex-start;
+}
+
+header > nav > .nav-center {
+  text-align: center;
+}
+
 header > nav > .nav-right {
   display: flex;
   align-items: center;
   gap: var(--first-level-spacing);
-}
-
-header > nav > .nav-center {
-  flex: 1;
-  text-align: center;
+  justify-content: flex-end;
 }
