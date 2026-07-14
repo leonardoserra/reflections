@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["display", "form", "textarea", "counter"]
+  static targets = ["display", "form", "textarea", "counter", "formActions"]
 
   edit(event) {
     if (!this.formTarget.classList.contains("hidden")) return
@@ -12,6 +12,7 @@ export default class extends Controller {
     this._resetMetaFields(this.originalPageDate, this.originalPlace)
     this.displayTarget.classList.add("hidden")
     this.formTarget.classList.remove("hidden")
+    this.formActionsTarget.classList.remove("hidden")
     this.textareaTarget.focus()
     this._refreshCounter()
   }
@@ -38,6 +39,7 @@ export default class extends Controller {
     this._resetMetaFields(this.originalPageDate, this.originalPlace)
     this.displayTarget.classList.remove("hidden")
     this.formTarget.classList.add("hidden")
+    this.formActionsTarget.classList.add("hidden")
     this._refreshCounter()
   }
 

@@ -33,6 +33,12 @@ html {
       min-height: 1rem;
       border: 1px solid var(--primary-color);
       background-color: var(--light-color);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+
+      &.flash-dismiss {
+        transform: translateX(100%);
+        opacity: 0;
+      }
 
       &.notice {
         border-color: var(--success-color);

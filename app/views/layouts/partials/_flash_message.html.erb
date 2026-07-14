@@ -1,5 +1,5 @@
 <% if alert = flash[:alert] %>
-    <div class="flash alert"><%= alert %></div>
+    <div class="flash alert" data-controller="flash"><%= alert %></div>
 <% elsif notice = flash[:notice] %>
-    <div class="flash notice"><%= notice %></div>
+    <div class="flash notice" data-controller="flash"><%= notice %></div>
 <% end %>
