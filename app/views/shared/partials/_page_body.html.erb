@@ -17,14 +17,14 @@
         </div>
       <% end %>
       <% if current_page.body.present? %>
-        <div><%= current_page.body %></div>
+        <pre><%= current_page.body %></pre>
       <% else %>
-        <div><em>Click to edit...</em></div>
+        <pre>Click to edit...</pre>
       <% end %>
     </div>
 
     <%= form_with model: current_page,
-                  data: { inline_edit_target: "form" },
+                  data: { inline_edit_target: "form", turbo_stream: true },
                   class: (local_assigns[:form_visible] ? "" : "hidden") do |form| %>
       <% if current_page.journal_page? %>
         <div class="page-meta-fields">
@@ -35,9 +35,9 @@
       <%= form.textarea :body,
                         data: { inline_edit_target: "textarea", action: "input->inline-edit#updateCounter" },
                         placeholder: "Write your thoughts here...",
-                        maxlength: 1500 %>
+                        maxlength: Page::MAX_BODY_LENGTH %>
       <div class="char-counter">
-        <span data-inline-edit-target="counter"><%= current_page.body.length %> / 1500</span>
+        <span data-inline-edit-target="counter"><%= current_page.body.length %> / <%= Page::MAX_BODY_LENGTH %></span>
       </div>
     <% end %>
   </div>

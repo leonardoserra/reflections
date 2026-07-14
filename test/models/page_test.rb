@@ -14,6 +14,69 @@ class PageTest < ActiveSupport::TestCase
     assert page.valid?
   end
 
+  test "body preserves leading and trailing newlines" do
+    page = pages(:book_page_one)
+    page.body = "\n\nHello\n\n"
+    page.valid?
+    assert_equal "\n\nHello\n\n", page.body
+  end
+
+  test "body preserves 4+ consecutive newlines" do
+    page = pages(:book_page_one)
+    page.body = "Hello\n\n\n\nWorld"
+    page.valid?
+    assert_equal "Hello\n\n\n\nWorld", page.body
+  end
+
+  test "body preserves 3 consecutive newlines" do
+    page = pages(:book_page_one)
+    page.body = "Hello\n\n\nWorld"
+    page.valid?
+    assert_equal "Hello\n\n\nWorld", page.body
+  end
+
+  test "body preserves 2 consecutive newlines" do
+    page = pages(:book_page_one)
+    page.body = "Hello\n\nWorld"
+    page.valid?
+    assert_equal "Hello\n\nWorld", page.body
+  end
+
+  test "body preserves mixed newline content" do
+    page = pages(:book_page_one)
+    page.body = "\n\nLine 1\n\n\nLine 2\n\n"
+    page.valid?
+    assert_equal "\n\nLine 1\n\n\nLine 2\n\n", page.body
+  end
+
+  test "body preserves 5 consecutive newlines" do
+    page = pages(:book_page_one)
+    page.body = "Hello\n\n\n\n\nWorld"
+    page.valid?
+    assert_equal "Hello\n\n\n\n\nWorld", page.body
+  end
+
+  test "body preserves single newlines" do
+    page = pages(:book_page_one)
+    page.body = "Line 1\nLine 2\nLine 3"
+    page.valid?
+    assert_equal "Line 1\nLine 2\nLine 3", page.body
+  end
+
+  test "body handles blank body" do
+    page = pages(:book_page_one)
+    page.body = ""
+    page.valid?
+    assert_equal "", page.body
+  end
+
+  test "body handles nil body" do
+    page = pages(:book_page_one)
+    page.body = nil
+    page.valid?
+    assert_nil page.body
+  end
+
   test "number is required" do
     page = pages(:book_page_one)
     page.number = nil

@@ -19,9 +19,6 @@ export default class extends Controller {
 
   connect() {
     this.isSaving = false
-    this.formTarget.addEventListener("turbo:submit-end", (event) => {
-      this.isSaving = false
-    })
 
     if (!this.formTarget.classList.contains("hidden")) {
       this.formActionsTarget.classList.remove("hidden")
@@ -63,6 +60,13 @@ export default class extends Controller {
     event.preventDefault()
     if (this.isSaving) return
     this.isSaving = true
+    this.formActionsTarget.classList.add("hidden")
+    this.formTarget.addEventListener("turbo:submit-end", (event) => {
+      this.isSaving = false
+      if (!event.detail.success) {
+        this.formActionsTarget.classList.remove("hidden")
+      }
+    }, { once: true })
     this.formTarget.requestSubmit()
   }
 
@@ -81,7 +85,8 @@ export default class extends Controller {
   clickOutside(event) {
     if (this.formTarget.classList.contains("hidden")) return
     if (this.element.contains(event.target)) return
-    this.save(event)
+    const saveBtn = this.formActionsTarget.querySelector("[data-action$='#save']")
+    if (saveBtn) saveBtn.click()
   }
 
   updateCounter(event) {
