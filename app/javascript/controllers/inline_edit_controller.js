@@ -19,9 +19,14 @@ export default class extends Controller {
 
   connect() {
     this.isSaving = false
-    this.formTarget.addEventListener("turbo:submit-end", () => {
+    this.formTarget.addEventListener("turbo:submit-end", (event) => {
       this.isSaving = false
     })
+
+    if (!this.formTarget.classList.contains("hidden")) {
+      this.formActionsTarget.classList.remove("hidden")
+      this.displayTarget.classList.add("hidden")
+    }
 
     this._pageLinkHandler = (event) => {
       const link = event.target.closest(".page-link")
@@ -35,10 +40,12 @@ export default class extends Controller {
       if (this.isSaving) return
       this.isSaving = true
 
-      const afterSave = () => {
+      const afterSave = (saveEvent) => {
         this.formTarget.removeEventListener("turbo:submit-end", afterSave)
         this.isSaving = false
-        window.location.href = href
+        if (saveEvent.detail.success) {
+          window.location.href = href
+        }
       }
 
       this.formTarget.addEventListener("turbo:submit-end", afterSave)
@@ -63,8 +70,8 @@ export default class extends Controller {
     event.preventDefault()
     event.stopPropagation()
     this.isSaving = false
-    this.textareaTarget.value = this.originalBody
-    this._resetMetaFields(this.originalPageDate, this.originalPlace)
+    this.textareaTarget.value = this.displayTarget.dataset.originalBody || ""
+    this._resetMetaFields(this.displayTarget.dataset.originalPageDate || "", this.displayTarget.dataset.originalPlace || "")
     this.displayTarget.classList.remove("hidden")
     this.formTarget.classList.add("hidden")
     this.formActionsTarget.classList.add("hidden")

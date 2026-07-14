@@ -6,4 +6,8 @@ class Page < ApplicationRecord
   validates :body, length: { maximum: MAX_BODY_LENGTH }
 
   belongs_to :pageable, polymorphic: true
+
+  def journal_page?
+    pageable_type == Journal.name
+  end
 end

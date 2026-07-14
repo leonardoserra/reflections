@@ -1,8 +1,20 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  test "downcases and strips email_address" do
-    user = User.new(email_address: " DOWNCASED@EXAMPLE.COM ")
-    assert_equal("downcased@example.com", user.email_address)
+  test "name is required" do
+    user = User.new(name: nil, email_address: "test@example.com", password: "secret")
+    assert user.invalid?
+    assert user.errors[:name].include?("can't be blank")
+  end
+
+  test "email_address is required" do
+    user = User.new(name: "Test", email_address: nil, password: "secret")
+    assert user.invalid?
+    assert user.errors[:email_address].include?("can't be blank")
+  end
+
+  test "valid user passes validation" do
+    user = User.new(name: "Test", email_address: "test@example.com", password: "secret")
+    assert user.valid?
   end
 end

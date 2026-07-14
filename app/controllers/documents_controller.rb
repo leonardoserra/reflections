@@ -12,7 +12,12 @@ class DocumentsController < ApplicationController
     @total_pages = @document.ordered_pages.count
     page_number = (params[:page] || @document.bookmark).to_i
     @current_page = @document.ordered_pages.find_by(number: page_number) || @document.ordered_pages.first
-    @document.update_column(:bookmark, @current_page.number) if @current_page && params[:page].present?
+
+    if @current_page.nil?
+      redirect_to root_path, alert: "No pages found for this document." and return
+    end
+
+    @document.update_column(:bookmark, @current_page.number) if params[:page].present?
   end
 
   def new
