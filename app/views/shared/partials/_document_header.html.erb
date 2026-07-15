@@ -3,7 +3,7 @@
   <% if document.is_a?(Book) && document.author.present? %>
     <p class="author">by <%= document.author %></p>
   <% end %>
-  <% if document.is_a?(Journal) && document.created_at.present? %>
-    <p class="author">Created <%= document.created_at.strftime("%B %d, %Y at %H:%M") %></p>
+  <% if (document.is_a?(Journal) || document.is_a?(Reflection)) && document.created_at.present? %>
+    <p class="author">Created <%= l document.created_at, format: "%B %d, %Y at %H:%M" %></p>
   <% end %>
 </div>

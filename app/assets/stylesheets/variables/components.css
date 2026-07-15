@@ -258,6 +258,7 @@ label {
 
 .page-toolbar .button {
   border-bottom: 0;
+  cursor: pointer;
 }
 
 .page-toolbar .form-actions input {
@@ -269,6 +270,7 @@ label {
   font-family: inherit;
   background-color: var(--light-color);
   color: var(--primary-color);
+  cursor: pointer;
 }
 
 .toolbar-right {
