@@ -85,6 +85,9 @@ export default class extends Controller {
   clickOutside(event) {
     if (this.formTarget.classList.contains("hidden")) return
     if (event.target.closest('.center-side')) return
+    if (event.target.closest('.page-toolbar')) return
+    if (event.target.closest('header')) return
+    if (event.target.closest('.pagination')) return
     this.save(event)
   }
 

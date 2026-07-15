@@ -24,14 +24,9 @@
     </div>
 
     <%= form_with model: current_page,
+                  html: { id: "page-form" },
                   data: { inline_edit_target: "form", turbo_stream: true },
                   class: (local_assigns[:form_visible] ? "" : "hidden") do |form| %>
-      <% if current_page.journal_page? %>
-        <div class="page-meta-fields">
-          <%= form.datetime_field :page_date, value: form.object.page_date&.strftime("%Y-%m-%dT%H:%M") %>
-          <%= form.text_field :place, placeholder: "Optional place..." %>
-        </div>
-      <% end %>
       <%= form.textarea :body,
                         data: { inline_edit_target: "textarea", action: "input->inline-edit#updateCounter click@window->inline-edit#clickOutside" },
                         placeholder: "Write your thoughts here...",
