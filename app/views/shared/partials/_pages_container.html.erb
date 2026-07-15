@@ -6,10 +6,16 @@
         <div class="form-actions hidden" data-inline-edit-target="formActions">
           <button type="button" class="button primary sm" data-action="inline-edit#save">Save</button>
           <button type="button" class="button sm" data-action="inline-edit#cancel">Cancel</button>
+          <% if current_page.journal_page? %>
+            <%= datetime_field_tag "page[page_date]", current_page.page_date&.strftime("%Y-%m-%dT%H:%M"), form: "page-form", placeholder: "Date" %>
+            <%= text_field_tag "page[place]", current_page.place, form: "page-form", placeholder: "Optional place..." %>
+          <% end %>
         </div>
       </div>
       <div class="toolbar-right">
-        <% unless document.is_a?(Reflection) %>
+        <% if document.is_a?(Reflection) %>
+          <span class="button primary sm invisible">+</span>
+        <% else %>
           <%= form_with url: pages_path, scope: :page, method: :post do |form| %>
             <%= form.hidden_field :pageable_id, value: document.id %>
             <%= form.submit "+", class: "button primary sm" %>

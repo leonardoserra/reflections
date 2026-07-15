@@ -1,11 +1,28 @@
-<% if alert = flash[:alert] %>
-  <%= alert %>
-<% end %>
-Sign up
-<%= form_with model: @user, url: registrations_url, class: "contents" do |form| %>
-  <%= form.text_field :name, required: true, placeholder: "Name", autofocus: true, value: params[:name] %>
-  <%= form.email_field :email_address, required: true, placeholder: "example@domain.com", value: params[:email_address] %>
-  <%= form.password_field :password, required: true, placeholder: "Enter your password", maxlength: 72 %>
-  <%= form.password_field :password_confirmation, required: true, placeholder: "Confirm your password", maxlength: 72 %>
-  <%= form.submit "Sign up" %>
-<% end %>
+<div class="form-card">
+  <h1 class="section-title">Sign up</h1>
+
+  <%= form_with model: @user, url: registrations_url do |form| %>
+    <div class="field">
+      <%= form.text_field :name, required: true, placeholder: "Name", autofocus: true, value: params[:name] %>
+    </div>
+
+    <div class="field">
+      <%= form.email_field :email_address, required: true, placeholder: "example@domain.com", value: params[:email_address] %>
+    </div>
+
+    <div class="field">
+      <%= form.password_field :password, required: true, placeholder: "Enter your password", maxlength: 72 %>
+    </div>
+
+    <div class="field">
+      <%= form.password_field :password_confirmation, required: true, placeholder: "Confirm your password", maxlength: 72 %>
+    </div>
+
+    <div class="form-actions">
+      <%= form.submit "Sign up", class: "button primary" %>
+      <span style="margin-left: auto;">
+        <%= link_to "I already have an account!", new_session_path %>
+      </span>
+    </div>
+  <% end %>
+</div>

@@ -17,6 +17,7 @@ header > nav > .nav-left {
   align-items: center;
   gap: var(--first-level-spacing);
   justify-content: flex-start;
+  padding-left: var(--first-level-spacing);
 }
 
 header > nav > .nav-center {

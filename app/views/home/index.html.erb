@@ -1,6 +1,6 @@
 <div class="index-container" data-controller="selection">
   <div class="document-list-card">
-    <h2 class="section-title pb-1" >Your Journals</h2>
+    <h2 class="section-title pb-1" data-action="click->selection#selectSection">Your Journals</h2>
     <%= link_to "NEW JOURNAL", new_journal_path, class: "button success sm create-button" %>
     <ul>
       <% @journals.each do |j| %>
@@ -17,7 +17,7 @@
     </ul>
   </div>
   <div class="document-list-card">
-    <h2 class="section-title pb-1">Your Books</h2>
+    <h2 class="section-title pb-1" data-action="click->selection#selectSection">Your Books</h2>
     <%= link_to "NEW BOOK", new_book_path, class: "button success sm create-button" %>
     <ul>
       <% @books.each do |b| %>
@@ -34,7 +34,7 @@
     </ul>
   </div>
   <div class="document-list-card">
-    <h2 class="section-title pb-1">Your Reflections</h2>
+    <h2 class="section-title pb-1" data-action="click->selection#selectSection">Your Reflections</h2>
     <%= link_to "NEW REFLECTION", new_reflection_path, class: "button success sm create-button" %>
     <ul>
       <% @reflections.each do |r| %>
@@ -52,7 +52,7 @@
   </div>
 
   <div class="selection-action-bar" data-selection-target="actionBar">
-    <button class="button primary"
+    <button class="button danger"
             data-action="click->selection#toggle"
             data-selection-target="selectButton">
         Delete Multi

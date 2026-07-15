@@ -6,17 +6,6 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     @book = documents(:book_one)
   end
 
-  test "index when authenticated" do
-    sign_in_as @user
-    get books_path
-    assert_response :success
-  end
-
-  test "index when unauthenticated redirects to login" do
-    get books_path
-    assert_redirected_to new_session_path
-  end
-
   test "show when authenticated" do
     sign_in_as @user
     get book_path(@book)

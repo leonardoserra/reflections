@@ -1,17 +1,18 @@
-<h1>Edit book</h1>
+<div class="form-card">
+  <h1 class="section-title">Edit Book</h1>
 
-<%= form_with model: @document do |form| %>
-  <div>
-    <%= form.text_field :name, required: true, placeholder: "Title", autofocus: true %>
-  </div>
+  <%= form_with model: @document do |form| %>
+    <div class="field">
+      <%= form.text_field :name, required: true, placeholder: "Title", autofocus: true, maxlength: 50 %>
+    </div>
 
-  <div>
-    <%= form.text_field :author, placeholder: "Author" %>
-  </div>
+    <div class="field">
+      <%= form.text_field :author, placeholder: "Author" %>
+    </div>
 
-  <div>
-    <%= form.submit "Update" %>
-  </div>
-<% end %>
-
-<%= link_to "Cancel", @document %>
+    <div class="form-actions">
+      <%= form.submit "Update", class: "button primary" %>
+      <%= link_to "Cancel", @document, class: "button secondary" %>
+    </div>
+  <% end %>
+</div>

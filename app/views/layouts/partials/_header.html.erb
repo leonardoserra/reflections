@@ -2,7 +2,13 @@
   <nav>
     <div class="nav-left">
       <%= link_to "Home", root_path, class: "button primary sm" %>
-      <%= link_to "Register", new_registration_path, class: "button primary sm"  unless authenticated? %>
+      <% unless authenticated? %>
+        <% if current_page?(new_registration_path) %>
+          <%= link_to "Login", new_session_path, class: "button primary sm" %>
+        <% else %>
+          <%= link_to "Register", new_registration_path, class: "button primary sm" %>
+        <% end %>
+      <% end %>
       <%= button_to "Log out", session_path, method: :delete, class: "button secondary sm" if authenticated? %>
     </div>
     <div class="nav-center">
