@@ -13,7 +13,9 @@ export default class extends Controller {
     this.selectionMode = !this.selectionMode
     this.element.classList.toggle("selection-active", this.selectionMode)
     this.secondaryActionsTarget.classList.toggle("hidden", !this.selectionMode)
-    this.selectButtonTarget.textContent = this.selectionMode ? "Cancel" : "Select"
+    this.selectButtonTarget.textContent = this.selectionMode ? "Cancel" : "Delete Multi"
+    this.selectButtonTarget.classList.toggle("danger", !this.selectionMode)
+    this.selectButtonTarget.classList.toggle("secondary", this.selectionMode)
     if (!this.selectionMode) this._clearSelection()
   }
 
@@ -23,6 +25,16 @@ export default class extends Controller {
     const li = event.currentTarget.closest("li")
     if (!li) return
     li.classList.toggle("selected")
+    this._updateCount()
+  }
+
+  selectSection(event) {
+    if (!this.selectionMode) return
+    const card = event.currentTarget.closest('.document-list-card')
+    if (!card) return
+    const items = card.querySelectorAll('li')
+    const allSelected = Array.from(items).every(li => li.classList.contains('selected'))
+    items.forEach(li => li.classList.toggle('selected', !allSelected))
     this._updateCount()
   }
 
@@ -63,7 +75,9 @@ export default class extends Controller {
     this.selectionMode = false
     this.element.classList.remove("selection-active")
     this.secondaryActionsTarget.classList.add("hidden")
-    this.selectButtonTarget.textContent = "Select"
+    this.selectButtonTarget.textContent = "Delete Multi"
+    this.selectButtonTarget.classList.add("danger")
+    this.selectButtonTarget.classList.remove("secondary")
     this._clearSelection()
   }
 
