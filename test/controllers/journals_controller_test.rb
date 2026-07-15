@@ -6,17 +6,6 @@ class JournalsControllerTest < ActionDispatch::IntegrationTest
     @journal = documents(:journal_one)
   end
 
-  test "index when authenticated" do
-    sign_in_as @user
-    get journals_path
-    assert_response :success
-  end
-
-  test "index when unauthenticated redirects to login" do
-    get journals_path
-    assert_redirected_to new_session_path
-  end
-
   test "show when authenticated" do
     sign_in_as @user
     get journal_path(@journal)

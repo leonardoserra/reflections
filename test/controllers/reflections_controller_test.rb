@@ -6,17 +6,6 @@ class ReflectionsControllerTest < ActionDispatch::IntegrationTest
     @reflection = documents(:reflection_one)
   end
 
-  test "index when authenticated" do
-    sign_in_as @user
-    get reflections_path
-    assert_response :success
-  end
-
-  test "index when unauthenticated redirects to login" do
-    get reflections_path
-    assert_redirected_to new_session_path
-  end
-
   test "show when authenticated" do
     sign_in_as @user
     get reflection_path(@reflection)

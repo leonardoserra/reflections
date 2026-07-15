@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   resources :pages, only: [ :update, :create ]
 
   # journals
-  resources :journals, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
+  resources :journals, only: [ :show, :new, :create, :edit, :update, :destroy ]
 
   # books
-  resources :books, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
+  resources :books, only: [ :show, :new, :create, :edit, :update, :destroy ]
 
   # reflections
-  resources :reflections, only: [ :index, :show, :new, :create, :edit, :update, :destroy ]
+  resources :reflections, only: [ :show, :new, :create, :edit, :update, :destroy ]
 
   # bulk document operations
   resources :documents, only: [] do

@@ -1,6 +1,51 @@
 :root {
-  /*button*/
   --border-radius-button: var(--border-radius);
+  --border-radius-field: var(--border-radius);
+}
+
+.form-card {
+  max-width: 30rem;
+  margin: var(--second-level-spacing) auto;
+  padding: var(--second-level-spacing);
+  border: 1px solid var(--primary-color);
+  border-radius: var(--border-radius);
+  box-shadow: 1rem 1rem var(--soft-primary-color);
+  background-color: var(--light-color);
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: var(--first-level-spacing);
+}
+
+.field {
+  margin-bottom: var(--first-level-spacing);
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius-field);
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: #fff;
+    color: var(--primary-color);
+
+    &:focus {
+      outline: none;
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: var(--primary-color);
 }
 
 .button {
