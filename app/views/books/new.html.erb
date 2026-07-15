@@ -3,7 +3,7 @@
 
   <%= form_with model: @document do |form| %>
     <div class="field">
-      <%= form.text_field :name, required: true, placeholder: "Title", autofocus: true %>
+      <%= form.text_field :name, required: true, placeholder: "Title", autofocus: true, maxlength: 50 %>
     </div>
 
     <div class="field">

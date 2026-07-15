@@ -9,7 +9,9 @@
         </div>
       </div>
       <div class="toolbar-right">
-        <% unless document.is_a?(Reflection) %>
+        <% if document.is_a?(Reflection) %>
+          <span class="button primary sm invisible">+</span>
+        <% else %>
           <%= form_with url: pages_path, scope: :page, method: :post do |form| %>
             <%= form.hidden_field :pageable_id, value: document.id %>
             <%= form.submit "+", class: "button primary sm" %>
