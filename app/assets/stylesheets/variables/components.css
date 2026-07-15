@@ -271,6 +271,10 @@ label {
   cursor: pointer;
 }
 
+.document-link {
+  font-size: 1.125rem;
+}
+
 .selection-active li.selected .document-link {
   text-decoration: line-through;
   opacity: 0.6;
@@ -278,6 +282,10 @@ label {
 
 .selection-active .single-delete {
   display: none;
+}
+
+.create-button {
+  margin-bottom: var(--first-level-spacing);
 }
 
 .selection-active .create-button {
