@@ -12,7 +12,10 @@
 
     <div class="form-actions">
       <%= form.submit "Sign in", class: "button primary" %>
-      <%= link_to "Forgot password?", new_password_path, class: "button secondary" %>
+      <span style="margin-left: auto; display: flex; gap: var(--first-level-spacing); align-items: center;">
+        <%= link_to "Forgot password?", new_password_path %>
+        <%= link_to "I'm a new user.", new_registration_path %>
+      </span>
     </div>
   <% end %>
 </div>
