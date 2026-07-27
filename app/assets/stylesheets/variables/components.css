@@ -135,9 +135,7 @@ label {
       font-weight: 700;
     }
   }
-
 }
-
 
 .daruma-link {
   position: fixed;
@@ -227,13 +225,18 @@ label {
         color: var(--primary-color);
       }
     }
-
   }
 }
 
 .form-actions {
   display: flex;
   gap: var(--first-level-spacing);
+  .alternative-links-block {
+    margin-left: auto;
+    display: flex;
+    gap: var(--first-level-spacing);
+    align-items: center;
+  }
 }
 
 .page-toolbar {
