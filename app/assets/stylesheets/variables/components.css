@@ -98,13 +98,18 @@ label {
 
 .document-list-card {
   width: calc(100vw / 3 - 2rem);
+  height: 85vh;
   padding: var(--second-level-spacing);
   border-radius: var(--border-radius);
   border: 1px solid var(--primary-color);
   box-shadow: 1rem 1rem var(--soft-primary-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+
   @media screen and (width < 520px){
     width: 480px;
-    margin: var(--second-level-spacing) auto;
+    height: calc(75vh / 3);
+    margin: var(--first-level-spacing) auto;
   }
 }
 

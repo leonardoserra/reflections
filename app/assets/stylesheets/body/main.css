@@ -15,7 +15,6 @@ main {
     display: flex;
     justify-content: space-around;
     padding-top: var(--first-level-spacing);
-
     ul {
       list-style: none;
       padding-left: 1rem;
@@ -27,17 +26,12 @@ main {
         border-bottom: 1px solid var(--light-color);
       }
     }
-
     .title {
       color: var(--secondary-color);
     }
 
     @media screen and (width < 520px){
       display: block;
-      /*TODO: make the middle section
-      scrollable while the header and footer are fixed.*/
-      /*overflow-y: auto;*/
-      /*height: 80%;*/
     }
   }
 }
