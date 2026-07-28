@@ -1,0 +1,7 @@
+<%= turbo_stream.update "flash" do %>
+  <% if @user %>
+    <div class="flash notice" data-controller="flash"><%= "#{@user.name} Logged in Successfully!" %></div>
+  <% elsif flash[:alert] %>
+    <div class="flash alert" data-controller="flash"><%= flash[:alert] %></div>
+  <% end %>
+<% end %>
