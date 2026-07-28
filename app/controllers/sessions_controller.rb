@@ -6,11 +6,17 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if user = User.authenticate_by(params.permit(:email_address, :password))
-      start_new_session_for user
+    if @user = User.authenticate_by(params.permit(:email_address, :password))
+      start_new_session_for @user
       redirect_to after_authentication_url
     else
-      redirect_to new_session_path, alert: "Try another email address or password."
+      respond_to do |format|
+        format.turbo_stream do
+          flash.now[:alert] = "Try another email address or password."
+          render status: :unprocessable_entity
+        end
+        format.html { redirect_to new_session_path, alert: "Try another email address or password." }
+      end
     end
   end
 

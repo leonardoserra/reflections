@@ -102,6 +102,10 @@ label {
   border-radius: var(--border-radius);
   border: 1px solid var(--primary-color);
   box-shadow: 1rem 1rem var(--soft-primary-color);
+  @media screen and (width < 520px){
+    width: 480px;
+    margin: var(--second-level-spacing) auto;
+  }
 }
 
 .pagination {
@@ -135,9 +139,7 @@ label {
       font-weight: 700;
     }
   }
-
 }
-
 
 .daruma-link {
   position: fixed;
@@ -145,6 +147,10 @@ label {
   right: var(--second-level-spacing);
   font-size: 0.9rem;
   z-index: 2;
+  @media screen and (width < 520px){
+    bottom: var(--first-level-spacing);
+    right: 0.2rem;
+  }
 }
 
 .daruma-link a:link,
@@ -227,13 +233,18 @@ label {
         color: var(--primary-color);
       }
     }
-
   }
 }
 
 .form-actions {
   display: flex;
   gap: var(--first-level-spacing);
+  .alternative-links-block {
+    margin-left: auto;
+    display: flex;
+    gap: var(--first-level-spacing);
+    align-items: center;
+  }
 }
 
 .page-toolbar {
@@ -312,6 +323,12 @@ label {
 
 .document-link {
   font-size: 1.125rem;
+
+  @media screen and (width < 520px){
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .selection-active li.selected .document-link {

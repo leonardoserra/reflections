@@ -31,5 +31,13 @@ main {
     .title {
       color: var(--secondary-color);
     }
+
+    @media screen and (width < 520px){
+      display: block;
+      /*TODO: make the middle section
+      scrollable while the header and footer are fixed.*/
+      /*overflow-y: auto;*/
+      /*height: 80%;*/
+    }
   }
 }
